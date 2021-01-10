@@ -6,6 +6,7 @@ import client from "../client";
 
 const Index = (props) => {
   const { posts = [] } = props;
+  console.log("posts", posts);
   return (
     <Layout>
       <Flex
@@ -50,7 +51,14 @@ const Index = (props) => {
         <Flex justifyContent="center">
           <Flex w="full" maxW="60rem" flexWrap="wrap" justifyContent="center">
             {posts.map(
-              ({ _id, title = "", slug = "", _updatedAt = "", mainImage }) =>
+              ({
+                _id,
+                title = "",
+                slug = "",
+                _updatedAt = "",
+                mainImage,
+                synopsis,
+              }) =>
                 slug && (
                   <Card
                     mode="post"
@@ -60,6 +68,7 @@ const Index = (props) => {
                     title={title}
                     date={_updatedAt}
                     image={mainImage}
+                    synopsis={synopsis}
                   />
                 )
             )}

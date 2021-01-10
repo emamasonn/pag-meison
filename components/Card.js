@@ -9,7 +9,7 @@ function urlFor(source) {
   return builder.image(source);
 }
 
-export const Card = ({ mode, href, as, title, date, image }) => {
+export const Card = ({ mode, href, as, title, date, image, synopsis }) => {
   return (
     <Flex
       flexDirection="column"
@@ -22,9 +22,9 @@ export const Card = ({ mode, href, as, title, date, image }) => {
       justifyContent="center"
     >
       <Image
-        src={urlFor(image).url()}
+        src={urlFor(image).width(200).url()}
         maxW="20rem"
-        maxH="15rem"
+        maxH="10.5rem"
         w="full"
         borderRadius="0.4rem 0.4rem 0rem 0rem"
       />
@@ -33,10 +33,14 @@ export const Card = ({ mode, href, as, title, date, image }) => {
           {title}
         </Text>
         <Text fontSize="0.8rem">{new Date(date).toDateString()}</Text>
-        <Text my="1rem" lineHeight="1.3rem" fontSize="0.9rem">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima
-          inventore quaerat dignissimos possimus eius beatae iste assumenda quos
-          sunt.
+        <Text
+          my="1rem"
+          lineHeight="1.3rem"
+          fontSize="0.9rem"
+          maxW="16rem"
+          noOfLines={4}
+        >
+          {synopsis}
         </Text>
         <Flex justifyContent="flex-end">
           {mode === "post" ? (
