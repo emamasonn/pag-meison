@@ -38,13 +38,19 @@ const Index = (props) => {
           </Heading>
           <Flex>
             <Link href={i.socialMedia.github}>
-              <Image src="github.svg" mr="0.5rem" />
+              <a>
+                <Image src="github.svg" mr="0.5rem" />
+              </a>
             </Link>
             <Link href={i.socialMedia.linkedin}>
-              <Image src="linkedin.svg" mr="0.5rem" />
+              <a>
+                <Image src="linkedin.svg" mr="0.5rem" />
+              </a>
             </Link>
             <Link href={i.socialMedia.twitter}>
-              <Image src="twitter.svg" mr="0.5rem" />
+              <a>
+                <Image src="twitter.svg" mr="0.5rem" />
+              </a>
             </Link>
           </Flex>
         </Flex>

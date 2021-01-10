@@ -45,13 +45,15 @@ export const Card = ({ mode, href, as, title, date, image, synopsis }) => {
         <Flex justifyContent="flex-end">
           {mode === "post" ? (
             <Link href={href} as={as}>
-              <Button
-                fontSize="0.8rem"
-                p="0.5rem"
-                rightIcon={<ArrowForwardIcon />}
-              >
-                Leer Mas
-              </Button>
+              <a>
+                <Button
+                  fontSize="0.8rem"
+                  p="0.5rem"
+                  rightIcon={<ArrowForwardIcon />}
+                >
+                  Leer Mas
+                </Button>
+              </a>
             </Link>
           ) : (
             <Flex>
