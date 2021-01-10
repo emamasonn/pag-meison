@@ -2,6 +2,8 @@ import groq from "groq";
 import imageUrlBuilder from "@sanity/image-url";
 import BlockContent from "@sanity/block-content-to-react";
 import client from "../../client";
+import { Flex, Box, Image, Heading, Text, Button } from "@chakra-ui/react";
+import { Layout } from "../../components";
 
 function urlFor(source) {
   return imageUrlBuilder(client).image(source);
@@ -10,20 +12,36 @@ function urlFor(source) {
 const Post = (props) => {
   const { title, name, authorImage, body = [] } = props;
   return (
-    <article>
-      <h1>{title}</h1>
-      <h1>{name}</h1>
-      {authorImage && (
-        <div>
-          <img src={urlFor(authorImage).width(50).url()} />
-        </div>
-      )}
-      <BlockContent
-        blocks={body}
-        imageOptions={{ w: 320, h: 240, fit: "max" }}
-        {...client.config()}
-      />
-    </article>
+    <Layout>
+      <Box>
+        <Flex justifyContent="center" my="2rem">
+          <Heading>{title}</Heading>
+        </Flex>
+        <Flex mx={["0", "1rem", "5rem", "5rem"]}>
+          <BlockContent
+            blocks={body}
+            imageOptions={{ w: 320, h: 240, fit: "max" }}
+            {...client.config()}
+          />
+        </Flex>
+        <Flex
+          my="2rem"
+          justifyContent="flex-end"
+          alignItems="center"
+          fontWeight="bold"
+        >
+          <Text>{name}</Text>
+          {authorImage && (
+            <Box mx="1rem">
+              <Image
+                src={urlFor(authorImage).width(50).url()}
+                borderRadius="5rem"
+              />
+            </Box>
+          )}
+        </Flex>
+      </Box>
+    </Layout>
   );
 };
 

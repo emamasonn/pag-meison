@@ -19,7 +19,7 @@ export const Layout = ({ children }) => {
         <Box w="3rem" h="3rem">
           <Link href="/">
             <a>
-              <Image src="faro.png" w="3rem" h="3rem" />
+              <Image src="/faro.png" w="3rem" h="3rem" />
             </a>
           </Link>
         </Box>
