@@ -3,10 +3,16 @@ import { Flex, Box, Image, Heading, Text, Button } from "@chakra-ui/react";
 import { Card, Layout } from "../components";
 import groq from "groq";
 import client from "../client";
+import imageUrlBuilder from "@sanity/image-url";
+const builder = imageUrlBuilder(client);
+
+function urlFor(source) {
+  return builder.image(source);
+}
 
 const Index = (props) => {
-  const { posts = [] } = props;
-  console.log("posts", posts);
+  const { posts = [], author } = props;
+  const i = author[0];
   return (
     <Layout>
       <Flex
@@ -16,31 +22,28 @@ const Index = (props) => {
         alignItems="center"
       >
         <Box w="22rem">
-          <Image src="profile.png" borderRadius="0.5rem" w="22rem" />
+          <Image src={urlFor(i.image).url()} borderRadius="0.5rem" w="22rem" />
         </Box>
         <Flex flexDirection="column" p={["0", "0", "1.5rem", "1.5rem"]}>
           <Heading as="h1" fontSize="3.25rem" fontWeight="800">
-            David Mason
+            {i.name}
           </Heading>
-          <Text fontSize="lg">Desarrollador Web</Text>
+          <Text fontSize="lg">{i.profile}</Text>
           <Heading my="1.5rem">Bio</Heading>
           <Text maxW="40rem" mb="1rem">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium
-            nobis accusamus iusto blanditiis quidem nemo nihil numquam sint
-            impedit quod. Temporibus cumque quos a nostrum vel numquam ipsam
-            quisquam facilis.
+            {i.bio[0].children[0].text}
           </Text>
           <Heading my="1rem" fontSize="1.5rem">
             Social Media
           </Heading>
           <Flex>
-            <Link href="https://github.com/emamasonn">
+            <Link href={i.socialMedia.github}>
               <Image src="github.svg" mr="0.5rem" />
             </Link>
-            <Link href="https://www.linkedin.com/in/demamason">
+            <Link href={i.socialMedia.linkedin}>
               <Image src="linkedin.svg" mr="0.5rem" />
             </Link>
-            <Link href="https://twitter.com/D_E_Mason">
+            <Link href={i.socialMedia.twitter}>
               <Image src="twitter.svg" mr="0.5rem" />
             </Link>
           </Flex>
@@ -84,8 +87,10 @@ const Index = (props) => {
 
 Index.getInitialProps = async () => ({
   posts: await client.fetch(groq`
-      *[_type == "post" && publishedAt < now()]|order(publishedAt desc)
+      *[_type == "post" && publishedAt < now()]|order(publishedAt desc)[0..2]
     `),
+  author: await client.fetch(groq`
+  *[_type == "author"]`),
 });
 
 export default Index;
