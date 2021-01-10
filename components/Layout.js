@@ -24,9 +24,13 @@ export const Layout = ({ children }) => {
           </Link>
         </Box>
         <Flex w="8rem" justifyContent="space-between" alignItems="center">
-          <Link href="/">Blog</Link>
+          <Link href="/posts">
+            <a>Blog</a>
+          </Link>
           <Divider orientation="vertical" />
-          <Link href="/projects">Projectos</Link>
+          <Link href="/projects">
+            <a>Projectos</a>
+          </Link>
         </Flex>
       </Flex>
       <Box px="2rem">{children}</Box>
