@@ -47,7 +47,7 @@ const Posts = (props) => {
 
 Posts.getInitialProps = async () => ({
   markdown: await client.fetch(groq`
-    *[_type == "markdownPost" && publishedAt < now()]|order(publishedAt desc)
+  *[_type == "markdownPost" && publishedAt < now()]|order(publishedAt desc)
   `),
 });
 
