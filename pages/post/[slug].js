@@ -1,9 +1,13 @@
 import groq from "groq";
 import imageUrlBuilder from "@sanity/image-url";
 import BlockContent from "@sanity/block-content-to-react";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { coy } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import client from "../../client";
 import { Flex, Box, Image, Heading, Text, Button } from "@chakra-ui/react";
 import { Layout } from "../../components";
+import ReactMarkdown from "react-markdown";
+import styled from "@emotion/styled";
 
 function urlFor(source) {
   return imageUrlBuilder(client).image(source);
@@ -11,17 +15,32 @@ function urlFor(source) {
 
 const Post = (props) => {
   const { title, name, authorImage, body = [] } = props;
+
+  const renderers = {
+    code: ({ language, value }) => {
+      return (
+        <SyntaxHighlighter
+          style={coy}
+          language={language}
+          children={value}
+          showLineNumbers={true}
+        />
+      );
+    },
+    heading: ({ children }) => <Heading fontSize="2.5rem">{children}</Heading>,
+  };
+
   return (
     <Layout>
       <Box>
         <Flex justifyContent="center" my="2rem">
           <Heading>{title}</Heading>
         </Flex>
-        <Flex mx={["0", "1rem", "5rem", "5rem"]}>
-          <BlockContent
-            blocks={body}
-            imageOptions={{ w: 320, h: 240, fit: "max" }}
-            {...client.config()}
+        <Flex mx={["0", "1rem", "5rem", "5rem"]} flexDirection="column">
+          <ReactMarkdown
+            renderers={renderers}
+            children={body}
+            escapeHtml={true}
           />
         </Flex>
         <Flex
@@ -45,20 +64,19 @@ const Post = (props) => {
   );
 };
 
-const query = groq`*[_type == "post" && slug.current == $slug][0]{
+const query = groq`*[_type == "markdownPost" && slug.current == $slug][0]{
   title,
+  body,
   "name": author->name,
-  "categories": categories[]->title,
-  "authorImage": author->image,
-  body
+  "authorImage": author->image
 }`;
 
 Post.getInitialProps = async function (context) {
-  // It's important to default the slug so that it doesn't return "undefined"
   const { slug = "" } = context.query;
-  return await client.fetch(query, {
+  const data = await client.fetch(query, {
     slug,
   });
+  return { ...data };
 };
 
 export default Post;

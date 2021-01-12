@@ -93,7 +93,7 @@ const Index = (props) => {
 
 Index.getInitialProps = async () => ({
   posts: await client.fetch(groq`
-      *[_type == "post" && publishedAt < now()]|order(publishedAt desc)[0..2]
+      *[_type == "markdownPost" && publishedAt < now()]|order(publishedAt desc)[0..2]
     `),
   author: await client.fetch(groq`
   *[_type == "author"]`),

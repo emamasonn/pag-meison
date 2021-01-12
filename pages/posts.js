@@ -4,7 +4,7 @@ import groq from "groq";
 import client from "../client";
 
 const Posts = (props) => {
-  const { posts } = props;
+  const { markdown } = props;
   return (
     <Layout>
       <Flex flexDirection="column" mb="5rem">
@@ -16,7 +16,7 @@ const Posts = (props) => {
             flexWrap="wrap"
             justifyContent={["center", "center", "flex-start", "flex-start"]}
           >
-            {posts.map(
+            {markdown.map(
               ({
                 _id,
                 title = "",
@@ -46,9 +46,9 @@ const Posts = (props) => {
 };
 
 Posts.getInitialProps = async () => ({
-  posts: await client.fetch(groq`
-        *[_type == "post" && publishedAt < now()]|order(publishedAt desc)
-      `),
+  markdown: await client.fetch(groq`
+    *[_type == "markdownPost" && publishedAt < now()]|order(publishedAt desc)
+  `),
 });
 
 export default Posts;
