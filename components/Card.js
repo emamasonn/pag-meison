@@ -9,7 +9,17 @@ function urlFor(source) {
   return builder.image(source);
 }
 
-export const Card = ({ mode, href, as, title, date, image, synopsis }) => {
+export const Card = ({
+  mode,
+  href,
+  as,
+  title,
+  date,
+  image,
+  synopsis,
+  repo,
+  page,
+}) => {
   return (
     <Flex
       flexDirection="column"
@@ -57,7 +67,7 @@ export const Card = ({ mode, href, as, title, date, image, synopsis }) => {
             </Link>
           ) : (
             <Flex>
-              <Link href="/">
+              <Link href={repo}>
                 <Image
                   src="/github.svg"
                   w="1.5rem"
@@ -66,7 +76,7 @@ export const Card = ({ mode, href, as, title, date, image, synopsis }) => {
                   cursor="pointer"
                 />
               </Link>
-              <Link href="/">
+              <Link href={page}>
                 <Image src="/web.svg" w="1.5rem" h="1.5rem" cursor="pointer" />
               </Link>
             </Flex>

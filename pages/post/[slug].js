@@ -14,7 +14,7 @@ function urlFor(source) {
 }
 
 const Post = (props) => {
-  const { title, name, authorImage, body = [] } = props;
+  const { title, name, authorImage, body = [], synopsis } = props;
 
   const renderers = {
     code: ({ language, value }) => {
@@ -36,6 +36,7 @@ const Post = (props) => {
         <Flex justifyContent="center" my="2rem">
           <Heading>{title}</Heading>
         </Flex>
+        <Text fontSize="1.5rem">{synopsis}</Text>
         <Flex mx={["0", "1rem", "5rem", "5rem"]} flexDirection="column">
           <ReactMarkdown
             renderers={renderers}
@@ -65,6 +66,7 @@ const Post = (props) => {
 };
 
 const query = groq`*[_type == "markdownPost" && slug.current == $slug][0]{
+  synopsis,
   title,
   body,
   "name": author->name,

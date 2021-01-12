@@ -84,7 +84,11 @@ const Index = (props) => {
           </Flex>
         </Flex>
         <Flex w="full" justifyContent="center" my="2rem">
-          <Button>Ver mas</Button>
+          <Link href="/posts">
+            <a>
+              <Button>Ver mas</Button>
+            </a>
+          </Link>
         </Flex>
       </Flex>
     </Layout>
