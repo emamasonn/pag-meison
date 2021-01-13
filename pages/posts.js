@@ -8,9 +8,19 @@ const Posts = (props) => {
   const { markdown } = props;
   return (
     <Layout>
-      <motion.div initial={{ x: "100vw" }} animate={{ x: 0 }}>
-        <Flex flexDirection="column" mb="5rem">
-          <Heading my="1.5rem">Posts ;)</Heading>
+      <Flex flexDirection="column" mb="5rem">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4 }}
+        >
+          <Heading mb="1.5rem">Articulos</Heading>
+        </motion.div>
+        <motion.div
+          initial={{ x: "50vw" }}
+          animate={{ x: 0 }}
+          transition={{ duration: 0.9 }}
+        >
           <Flex justifyContent="center">
             <Flex
               w="full"
@@ -42,8 +52,8 @@ const Posts = (props) => {
               )}
             </Flex>
           </Flex>
-        </Flex>
-      </motion.div>
+        </motion.div>
+      </Flex>
     </Layout>
   );
 };
