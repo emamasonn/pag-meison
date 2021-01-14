@@ -16,28 +16,28 @@ const Posts = (props) => {
         >
           <Heading mb="1.5rem">Articulos</Heading>
         </motion.div>
-        <motion.div
-          initial={{ x: "50vw" }}
-          animate={{ x: 0 }}
-          transition={{ duration: 0.9 }}
-        >
-          <Flex justifyContent="center">
-            <Flex
-              w="full"
-              maxW="60rem"
-              flexWrap="wrap"
-              justifyContent={["center", "center", "flex-start", "flex-start"]}
-            >
-              {markdown.map(
-                ({
-                  _id,
-                  title = "",
-                  slug = "",
-                  _updatedAt = "",
-                  mainImage,
-                  synopsis,
-                }) =>
-                  slug && (
+        <Flex justifyContent="center">
+          <Flex
+            w="full"
+            maxW="60rem"
+            flexWrap="wrap"
+            justifyContent={["center", "center", "flex-start", "flex-start"]}
+          >
+            {markdown.map(
+              ({
+                _id,
+                title = "",
+                slug = "",
+                _updatedAt = "",
+                mainImage,
+                synopsis,
+              }) =>
+                slug && (
+                  <motion.div
+                    initial={{ scale: 0.9, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ delay: 0.4, duration: 1 }}
+                  >
                     <Card
                       mode="post"
                       key={_id}
@@ -48,11 +48,11 @@ const Posts = (props) => {
                       image={mainImage}
                       synopsis={synopsis}
                     />
-                  )
-              )}
-            </Flex>
+                  </motion.div>
+                )
+            )}
           </Flex>
-        </motion.div>
+        </Flex>
       </Flex>
     </Layout>
   );
