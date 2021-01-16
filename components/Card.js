@@ -68,16 +68,25 @@ export const Card = ({
           ) : (
             <Flex>
               <Link href={repo}>
-                <Image
-                  src="/github.svg"
-                  w="1.5rem"
-                  h="1.5rem"
-                  mr="0.8rem"
-                  cursor="pointer"
-                />
+                <a>
+                  <Image
+                    src="/github.svg"
+                    w="1.5rem"
+                    h="1.5rem"
+                    mr="0.8rem"
+                    cursor="pointer"
+                  />
+                </a>
               </Link>
               <Link href={page}>
-                <Image src="/web.svg" w="1.5rem" h="1.5rem" cursor="pointer" />
+                <a>
+                  <Image
+                    src="/web.svg"
+                    w="1.5rem"
+                    h="1.5rem"
+                    cursor="pointer"
+                  />
+                </a>
               </Link>
             </Flex>
           )}

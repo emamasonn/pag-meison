@@ -1,6 +1,5 @@
 import groq from "groq";
 import imageUrlBuilder from "@sanity/image-url";
-import BlockContent from "@sanity/block-content-to-react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { base16AteliersulphurpoolLight } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import client from "../../client";
@@ -18,15 +17,13 @@ import {
 } from "@chakra-ui/react";
 import { Layout } from "../../components";
 import ReactMarkdown from "react-markdown";
-import styled from "@emotion/styled";
 
 function urlFor(source) {
   return imageUrlBuilder(client).image(source);
 }
 
 const Post = (props) => {
-  const { title, name, authorImage, body = [], synopsis } = props;
-
+  const { title, name, authorImage, body = [], mainImage } = props;
   const renderers = {
     code: ({ language, value }) => {
       return (
@@ -52,7 +49,12 @@ const Post = (props) => {
       </Heading>
     ),
     paragraph: ({ children }) => (
-      <Text fontSize="1.1rem" letterSpacing="-0.003em" lineHeight="1.7rem">
+      <Text
+        fontSize="1.1rem"
+        letterSpacing="-0.003em"
+        lineHeight="1.7rem"
+        mb="1.5"
+      >
         {children}
       </Text>
     ),
@@ -61,7 +63,7 @@ const Post = (props) => {
   return (
     <Layout>
       <Flex maxH="20rem">
-        <Image src="/imagepost.jpg" objectFit="cover" />
+        <Image src={urlFor(mainImage)} objectFit="cover" />
       </Flex>
       <Box maxW="50rem" m="auto">
         <Flex justifyContent="flex-start" mb="2rem" mt="3rem">
@@ -134,7 +136,7 @@ const Post = (props) => {
 };
 
 const query = groq`*[_type == "markdownPost" && slug.current == $slug][0]{
-  synopsis,
+  mainImage,
   title,
   body,
   "name": author->name,
