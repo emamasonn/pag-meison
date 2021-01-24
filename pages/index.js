@@ -60,7 +60,7 @@ const Index = (props) => {
               <Heading my="1rem" fontSize="1.5rem">
                 Social Media
               </Heading>
-              <Flex>
+              <Flex mb="1rem">
                 <Link href={i.socialMedia.github}>
                   <a>
                     <Image src="github.svg" mr="0.5rem" />
@@ -89,7 +89,7 @@ const Index = (props) => {
             <Flex
               flexDirection="column"
               px={["0.5rem", "1rem", "1.5rem", "1.5rem"]}
-              py="1.5rem"
+              py={["2rem", "2rem", "1.5rem", "1.5rem"]}
             >
               <motion.div
                 initial={{ opacity: 0 }}
@@ -148,7 +148,12 @@ const Index = (props) => {
               <Flex w="full" justifyContent="center" my="2rem">
                 <Link href="/posts">
                   <a>
-                    <Button borderRadius="unset" bg="tomato" color="#fff">
+                    <Button
+                      borderRadius="unset"
+                      bg="#6c3583"
+                      color="#fff"
+                      borderRadius="0.2rem"
+                    >
                       Ver mas
                     </Button>
                   </a>

@@ -1,5 +1,5 @@
 import { CardPost, Layout } from "../components";
-import { Flex, Heading } from "@chakra-ui/react";
+import { Flex, Heading, Box } from "@chakra-ui/react";
 import groq from "groq";
 import client from "../client";
 import { motion } from "framer-motion";
@@ -43,14 +43,18 @@ const Posts = ({ markdown }) => {
                     transition={{ delay: 0.4, duration: 1 }}
                     key={_id}
                   >
-                    <CardPost
-                      href="/post/[slug]"
-                      as={`/post/${slug.current}`}
-                      title={title}
-                      date={_updatedAt}
-                      image={mainImage}
-                      synopsis={synopsis}
-                    />
+                    <Box
+                      m={["0.9rem 0.5rem", "0.9rem 0.6rem", "0.9rem", "0.9rem"]}
+                    >
+                      <CardPost
+                        href="/post/[slug]"
+                        as={`/post/${slug.current}`}
+                        title={title}
+                        date={_updatedAt}
+                        image={mainImage}
+                        synopsis={synopsis}
+                      />
+                    </Box>
                   </motion.div>
                 )
             )}
