@@ -16,11 +16,9 @@ export const CardPost = ({ href, as, title, date, image, synopsis }) => {
     <Flex
       flexDirection="column"
       maxW={["full", "full", "21rem", "21rem"]}
-      maxH="23rem"
+      maxH="30rem"
       w="full"
-      //m={["0rem", "0.6rem", "0.9rem 1rem", "0.9rem 1rem"]}
       borderRadius="0.3rem"
-      //border="1px solid #CBD5E0"
       justifyContent="center"
       color="#fff"
       backgroundColor="#34495E"
@@ -50,9 +48,9 @@ export const CardPost = ({ href, as, title, date, image, synopsis }) => {
           <Link href={href} as={as}>
             <a>
               <Button
-                fontSize="0.8rem"
+                //fontSize="0.8rem"
                 p="0.5rem"
-                borderRadius="unset"
+                //borderRadius="unset"
                 color="#6c3583"
                 fontSize="0.8rem"
                 fontWeight="bold"
