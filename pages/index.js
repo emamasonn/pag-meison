@@ -153,6 +153,7 @@ const Index = (props) => {
                       bg="#6c3583"
                       color="#fff"
                       borderRadius="0.2rem"
+                      _hover={{ color: "#6c3583", background: "#fff" }}
                     >
                       Ver mas
                     </Button>
