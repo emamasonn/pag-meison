@@ -27,7 +27,7 @@ const Post = (props) => {
   const renderers = {
     code: ({ language, value }) => {
       return (
-        <Box my="2rem">
+        <Box my="1.5rem">
           <SyntaxHighlighter
             style={base16AteliersulphurpoolLight}
             language={language}
@@ -53,7 +53,7 @@ const Post = (props) => {
         fontSize="1.1rem"
         letterSpacing="-0.003em"
         lineHeight="1.7rem"
-        mb="1.5"
+        mb="1.5rem"
       >
         {children}
       </Text>
@@ -114,23 +114,23 @@ const Post = (props) => {
             escapeHtml={false}
           />
         </Flex>
-        <Flex
-          my="2rem"
-          justifyContent="flex-end"
-          alignItems="center"
-          fontWeight="bold"
-        >
-          <Text>{name}</Text>
-          {authorImage && (
-            <Box mx="1rem">
-              <Image
-                src={urlFor(authorImage).width(50).url()}
-                borderRadius="5rem"
-              />
-            </Box>
-          )}
-        </Flex>
       </Box>
+      <Flex
+        my="2rem"
+        justifyContent="flex-end"
+        alignItems="center"
+        fontWeight="bold"
+      >
+        <Text>{name}</Text>
+        {authorImage && (
+          <Box mx="1rem">
+            <Image
+              src={urlFor(authorImage).width(50).url()}
+              borderRadius="5rem"
+            />
+          </Box>
+        )}
+      </Flex>
     </Layout>
   );
 };

@@ -19,8 +19,8 @@ export const Layout = ({ children }) => {
           h="4rem"
           justifyContent="space-between"
           alignItems="center"
-          mb="2rem"
           p="1rem"
+          backgroundColor="#1C2833"
         >
           <Box w="3rem" h="3rem">
             <Link href="/">
@@ -29,7 +29,12 @@ export const Layout = ({ children }) => {
               </a>
             </Link>
           </Box>
-          <Flex w="8rem" justifyContent="space-between" alignItems="center">
+          <Flex
+            w="8rem"
+            justifyContent="space-between"
+            alignItems="center"
+            color="#fff"
+          >
             <motion.div
               whileHover={{ scale: 1.1 }}
               style={{ fontSize: "1.1rem" }}
@@ -50,7 +55,7 @@ export const Layout = ({ children }) => {
           </Flex>
         </Flex>
       </motion.div>
-      <Box px="2rem">{children}</Box>
+      <Box>{children}</Box>
     </Flex>
   );
 };

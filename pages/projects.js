@@ -7,49 +7,53 @@ import { motion } from "framer-motion";
 const Projects = ({ projects }) => {
   return (
     <Layout>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.4 }}
+      <Flex
+        flexDirection="column"
+        px={["0.5rem", "1rem", "1.5rem", "1.5rem"]}
+        py="3rem"
       >
-        <Heading mb="2rem">Projectos</Heading>
-      </motion.div>
-      <Flex w="full" justifyContent="center" w="full" maxW="75rem" m="auto">
-        <Flex
-          maxW="80rem"
-          w="full"
-          justifyContent={["center", "center", "center", "flex-start"]}
-          flexWrap="wrap"
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4 }}
         >
-          {projects &&
-            projects.map(
-              ({
-                _id,
-                title = "",
-                _updatedAt = "",
-                mainImage,
-                synopsis,
-                page,
-                repo,
-              }) => (
-                <motion.div
-                  initial={{ scale: 0.9, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ delay: 0.4, duration: 1 }}
-                >
-                  <CardProject
-                    mode="project"
+          <Heading mb="2rem">Projectos</Heading>
+        </motion.div>
+        <Flex w="full" justifyContent="center" w="full" maxW="75rem" m="auto">
+          <Flex
+            maxW="80rem"
+            w="full"
+            justifyContent={["center", "center", "center", "flex-start"]}
+            flexWrap="wrap"
+          >
+            {projects &&
+              projects.map(
+                ({
+                  _id,
+                  title = "",
+                  _updatedAt = "",
+                  mainImage,
+                  synopsis,
+                  page,
+                  repo,
+                }) => (
+                  <motion.div
+                    initial={{ scale: 0.9, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ delay: 0.4, duration: 1 }}
                     key={_id}
-                    page={page}
-                    repo={repo}
-                    title={title}
-                    date={_updatedAt}
-                    image={mainImage}
-                    synopsis={synopsis}
-                  />
-                </motion.div>
-              )
-            )}
+                  >
+                    <CardProject
+                      page={page}
+                      repo={repo}
+                      title={title}
+                      date={_updatedAt}
+                      image={mainImage}
+                    />
+                  </motion.div>
+                )
+              )}
+          </Flex>
         </Flex>
       </Flex>
     </Layout>

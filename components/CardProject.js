@@ -3,6 +3,7 @@ import { ArrowForwardIcon } from "@chakra-ui/icons";
 import Link from "next/link";
 import client from "../client";
 import imageUrlBuilder from "@sanity/image-url";
+import { formatDate } from "../utils/formatDate";
 
 const builder = imageUrlBuilder(client);
 
@@ -27,7 +28,7 @@ export const CardProject = ({ title, date, image, repo, page }) => {
       justifyContent="space-between"
       backgroundImage={`url("${urlFor(image).url()}")`}
       backgroundSize="cover"
-      backgroundColor="#494A61"
+      backgroundColor="rgb(27 41 51)"
     >
       <Flex mt="4rem">
         <Divider />
@@ -43,7 +44,9 @@ export const CardProject = ({ title, date, image, repo, page }) => {
         >
           {title}
         </Text>
-        <Flex mt="1rem">
+      </Flex>
+      <Flex flexDirection="column" alignItems="flex-start" color="#fff">
+        <Flex mb="0.5rem">
           <Link href={repo}>
             <a>
               <Image
@@ -61,12 +64,10 @@ export const CardProject = ({ title, date, image, repo, page }) => {
             </a>
           </Link>
         </Flex>
-      </Flex>
-      <Flex flexDirection="column" alignItems="flex-start" color="#fff">
         <Text fontSize="0.9rem" fontWeight="bold">
-          UPLOADED
+          CARGADO
         </Text>
-        <Text>{date}</Text>
+        <Text>{formatDate(date)}</Text>
       </Flex>
     </Flex>
   );

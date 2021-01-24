@@ -1,14 +1,18 @@
-import { Card, Layout } from "../components";
+import { CardPost, Layout } from "../components";
 import { Flex, Heading } from "@chakra-ui/react";
 import groq from "groq";
 import client from "../client";
 import { motion } from "framer-motion";
 
-const Posts = (props) => {
-  const { markdown } = props;
+const Posts = ({ markdown }) => {
   return (
     <Layout>
-      <Flex flexDirection="column" mb="5rem">
+      <Flex
+        flexDirection="column"
+        mb="5rem"
+        px={["0.5rem", "1rem", "1.5rem", "1.5rem"]}
+        py="1.5rem"
+      >
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -37,10 +41,9 @@ const Posts = (props) => {
                     initial={{ scale: 0.9, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     transition={{ delay: 0.4, duration: 1 }}
+                    key={_id}
                   >
-                    <Card
-                      mode="post"
-                      key={_id}
+                    <CardPost
                       href="/post/[slug]"
                       as={`/post/${slug.current}`}
                       title={title}
