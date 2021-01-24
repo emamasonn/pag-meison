@@ -39,7 +39,7 @@ const Post = (props) => {
     },
     heading: ({ children }) => (
       <Heading
-        fontSize="2rem"
+        fontSize={["1.5rem", "1.5rem", "2rem", "2rem"]}
         mb="1rem"
         mt="2rem"
         letterSpacing="0rem"
@@ -65,7 +65,12 @@ const Post = (props) => {
       <Flex maxH="20rem">
         <Image src={urlFor(mainImage)} objectFit="cover" />
       </Flex>
-      <Box maxW="50rem" m="auto">
+      <Box
+        maxW="50rem"
+        m="auto"
+        px={["0.9rem", "1rem", "1.5rem", "1.5rem"]}
+        py="1.5rem"
+      >
         <Flex justifyContent="flex-start" mb="2rem" mt="3rem">
           <Heading
             w="full"
