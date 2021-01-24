@@ -26,7 +26,7 @@ export const CardProject = ({ title, date, image, repo, page }) => {
       borderRadius="0.5rem"
       border="1px solid #CBD5E0"
       justifyContent="space-between"
-      backgroundImage={`url("${urlFor(image).url()}")`}
+      //backgroundImage={`url("${urlFor(image).url()}")`}
       backgroundSize="cover"
       backgroundColor="rgb(27 41 51)"
     >
