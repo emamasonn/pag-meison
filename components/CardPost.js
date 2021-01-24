@@ -15,20 +15,22 @@ export const CardPost = ({ href, as, title, date, image, synopsis }) => {
   return (
     <Flex
       flexDirection="column"
-      maxW="18rem"
-      maxH="30rem"
+      maxW={["full", "full", "21rem", "21rem"]}
+      maxH="23rem"
       w="full"
-      m="0.6rem"
-      borderRadius="0.5rem"
-      border="1px solid #CBD5E0"
+      //m={["0rem", "0.6rem", "0.9rem 1rem", "0.9rem 1rem"]}
+      borderRadius="0.3rem"
+      //border="1px solid #CBD5E0"
       justifyContent="center"
+      color="#fff"
+      backgroundColor="#34495E"
     >
       <Image
         src={urlFor(image).width(200).url()}
-        maxW="20rem"
+        maxW="21rem"
         maxH="10.5rem"
         w="full"
-        borderRadius="0.4rem 0.4rem 0rem 0rem"
+        borderRadius="0.3rem 0.3rem 0rem 0rem"
       />
       <Flex flexDirection="column" p="0.8rem">
         <Text fontWeight="bold" fontSize="1.2rem" maxW="16rem" isTruncated>
@@ -50,6 +52,11 @@ export const CardPost = ({ href, as, title, date, image, synopsis }) => {
               <Button
                 fontSize="0.8rem"
                 p="0.5rem"
+                borderRadius="unset"
+                color="#6c3583"
+                fontSize="0.8rem"
+                fontWeight="bold"
+                borderRadius="0.2rem"
                 rightIcon={<ArrowForwardIcon />}
               >
                 Leer Mas

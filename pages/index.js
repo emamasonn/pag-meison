@@ -96,7 +96,9 @@ const Index = (props) => {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.4 }}
               >
-                <Heading my="1.5rem">Articulos</Heading>
+                <Heading my="1.5rem" color="#fff">
+                  Articulos
+                </Heading>
               </motion.div>
               <Flex justifyContent="center">
                 <Flex
@@ -121,14 +123,23 @@ const Index = (props) => {
                           transition={{ delay: 0.5 }}
                           key={_id}
                         >
-                          <CardPost
-                            href="/post/[slug]"
-                            as={`/post/${slug.current}`}
-                            title={title}
-                            date={_updatedAt}
-                            image={mainImage}
-                            synopsis={synopsis}
-                          />
+                          <Box
+                            m={[
+                              "0.9rem 0.5rem",
+                              "0.9rem 0.6rem",
+                              "1rem",
+                              "1rem",
+                            ]}
+                          >
+                            <CardPost
+                              href="/post/[slug]"
+                              as={`/post/${slug.current}`}
+                              title={title}
+                              date={_updatedAt}
+                              image={mainImage}
+                              synopsis={synopsis}
+                            />
+                          </Box>
                         </motion.div>
                       )
                   )}
@@ -137,7 +148,9 @@ const Index = (props) => {
               <Flex w="full" justifyContent="center" my="2rem">
                 <Link href="/posts">
                   <a>
-                    <Button>Ver mas</Button>
+                    <Button borderRadius="unset" bg="tomato" color="#fff">
+                      Ver mas
+                    </Button>
                   </a>
                 </Link>
               </Flex>
