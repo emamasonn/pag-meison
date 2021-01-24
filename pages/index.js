@@ -25,7 +25,6 @@ const Index = (props) => {
         >
           <Flex
             flexWrap="wrap-reverse"
-            p="1rem"
             justifyContent="center"
             alignItems="center"
             backgroundImage={`url("wave-1.svg")`}
@@ -41,7 +40,7 @@ const Index = (props) => {
             </Box>
             <Flex
               flexDirection="column"
-              p={["0", "0", "1.5rem", "1.5rem"]}
+              p={["1rem", "1rem", "1.5rem", "1.5rem"]}
               color="#fff"
             >
               <Heading as="h1" fontSize="3.25rem" fontWeight="800">
@@ -60,7 +59,7 @@ const Index = (props) => {
               <Heading my="1rem" fontSize="1.5rem">
                 Social Media
               </Heading>
-              <Flex mb="1rem">
+              <Flex>
                 <Link href={i.socialMedia.github}>
                   <a>
                     <Image src="github.svg" mr="0.5rem" />
@@ -96,7 +95,7 @@ const Index = (props) => {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.4 }}
               >
-                <Heading my="1.5rem" color="#fff">
+                <Heading mb="1.5rem" mt="2.5rem" color="#fff">
                   Articulos
                 </Heading>
               </motion.div>
