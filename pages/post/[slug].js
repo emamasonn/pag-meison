@@ -17,13 +17,14 @@ import {
 } from "@chakra-ui/react";
 import { Layout } from "../../components";
 import ReactMarkdown from "react-markdown";
+import styled from "@emotion/styled";
 
 function urlFor(source) {
   return imageUrlBuilder(client).image(source);
 }
 
 const Post = (props) => {
-  const { title, name, authorImage, body = [], mainImage } = props;
+  const { title, name, authorImage, body = [], mainImage, path } = props;
   const renderers = {
     code: ({ language, value }) => {
       return (
@@ -60,6 +61,22 @@ const Post = (props) => {
     ),
   };
 
+  const handleCopyUrl = () => {
+    const textArea = document.createElement("textarea");
+    textArea.value = window.location.href;
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    try {
+      const successful = document.execCommand("copy");
+      //const msg = successful ? "successful" : "unsuccessful";
+      //console.log("Copying url command was " + msg);
+    } catch (err) {
+      console.log(err);
+    }
+    document.body.removeChild(textArea);
+  };
+
   return (
     <Layout>
       <Flex maxH="20rem">
@@ -88,24 +105,40 @@ const Post = (props) => {
             </MenuButton>
             <MenuList minW="8rem">
               <MenuItem display="flex" justifyContent="flex-start">
-                <Image
-                  src="/twitterLine.svg"
-                  w="1.5rem"
-                  h="1.5rem"
-                  mr="0.6rem"
-                />
-                <Text>Twitter</Text>
+                <a
+                  href={`https://twitter.com/intent/tweet?text=${title}%20https://meison.vercel.app${path}`}
+                >
+                  <Flex>
+                    <Image
+                      src="/twitterLine.svg"
+                      w="1.5rem"
+                      h="1.5rem"
+                      mr="0.6rem"
+                    />
+                    <Text>Twitter</Text>
+                  </Flex>
+                </a>
               </MenuItem>
               <MenuItem display="flex" justifyContent="flex-start">
-                <Image
-                  src="/linkedinLine.svg"
-                  w="1.5rem"
-                  h="1.5rem"
-                  mr="0.6rem"
-                />
-                <Text>Linkedin</Text>
+                <a
+                  href={`https://www.linkedin.com/sharing/share-offsite/?url=https://meison.vercel.app${path}`}
+                >
+                  <Flex>
+                    <Image
+                      src="/linkedinLine.svg"
+                      w="1.5rem"
+                      h="1.5rem"
+                      mr="0.6rem"
+                    />
+                    <Text>Linkedin</Text>
+                  </Flex>
+                </a>
               </MenuItem>
-              <MenuItem display="flex" justifyContent="flex-start">
+              <MenuItem
+                display="flex"
+                justifyContent="flex-start"
+                onClick={handleCopyUrl}
+              >
                 <Image src="/copylink.svg" w="1.5rem" h="1.5rem" mr="0.6rem" />
                 <Text>Copy Link</Text>
               </MenuItem>
@@ -150,10 +183,12 @@ const query = groq`*[_type == "markdownPost" && slug.current == $slug][0]{
 
 Post.getInitialProps = async function (context) {
   const { slug = "" } = context.query;
+  const { asPath } = context;
+  console.log(asPath);
   const data = await client.fetch(query, {
     slug,
   });
-  return { ...data };
+  return { ...data, path: asPath };
 };
 
 export default Post;
