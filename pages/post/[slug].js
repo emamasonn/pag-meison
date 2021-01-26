@@ -14,6 +14,7 @@ import {
   MenuList,
   MenuItem,
   MenuButton,
+  Progress,
 } from "@chakra-ui/react";
 import { Layout } from "../../components";
 import ReactMarkdown from "react-markdown";
@@ -25,6 +26,9 @@ function urlFor(source) {
 
 const Post = (props) => {
   const { title, name, authorImage, body = [], mainImage, path } = props;
+
+  const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
+
   const renderers = {
     code: ({ language, value }) => {
       return (
@@ -106,7 +110,7 @@ const Post = (props) => {
             <MenuList minW="8rem">
               <MenuItem display="flex" justifyContent="flex-start">
                 <a
-                  href={`https://twitter.com/intent/tweet?text=${title}%20https://meison.vercel.app${path}`}
+                  href={`https://twitter.com/intent/tweet?text=${title}%20${baseURL}${path}`}
                 >
                   <Flex>
                     <Image
@@ -121,7 +125,7 @@ const Post = (props) => {
               </MenuItem>
               <MenuItem display="flex" justifyContent="flex-start">
                 <a
-                  href={`https://www.linkedin.com/sharing/share-offsite/?url=https://meison.vercel.app${path}`}
+                  href={`https://www.linkedin.com/sharing/share-offsite/?url=${baseURL}${path}`}
                 >
                   <Flex>
                     <Image
@@ -184,7 +188,6 @@ const query = groq`*[_type == "markdownPost" && slug.current == $slug][0]{
 Post.getInitialProps = async function (context) {
   const { slug = "" } = context.query;
   const { asPath } = context;
-  console.log(asPath);
   const data = await client.fetch(query, {
     slug,
   });
